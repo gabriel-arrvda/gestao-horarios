@@ -11,6 +11,6 @@ export class OptimizeService {
   ) { }
 
   getOptimizeData(variables: object) {
-    return this.http.get(`/api/generate`, { params: {...variables }});
+    return this.http.get(`https://gestao-horarios-940588244292.us-central1.run.app/generate`, { params: {...variables }});
   }
 }
