@@ -8,8 +8,146 @@
   </nav>
 
   <div class="mt-4 grow flex flex-row w-full text-center justify-center">
-    <div class="flex flex-col w-2/5 grow"></div>
-    <div class="flex flex-col w-3/5 grow pr-6 pb-10">
+    <div class="flex flex-col w-3/5 grow">
+      <!-- app.component.html -->
+      <div class="w-3/5 mx-auto mt-8 p-4 bg-white shadow-md rounded-md">
+        <h2 class="text-xl font-bold mb-6 text-center">Cadastro de Turnos</h2>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <!-- Quantidade Total de Clínicos -->
+          <div class="flex items-center mb-4">
+            <label for="qtdTotalClinicos" class="w-1/3 text-sm font-medium text-gray-700">
+              Quantidade Total de Clínicos:
+            </label>
+            <input id="qtdTotalClinicos" type="number" formControlName="qtdTotalClinicos"
+              class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-emerald-500" />
+          </div>
+
+          <!-- Quantidade Total de Especialistas -->
+          <div class="flex items-center mb-4">
+            <label for="qtdTotalEspecialistas" class="w-1/3 text-sm font-medium text-gray-700">
+              Quantidade Total de Especialistas:
+            </label>
+            <input id="qtdTotalEspecialistas" type="number" formControlName="qtdTotalEspecialistas"
+              class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-emerald-500" />
+          </div>
+
+          <!-- Quantidade por Turno -->
+          <h3 class="text-lg font-semibold mb-4 mt-6">Quantidade por Turno</h3>
+
+          <!-- Clínicos - Turno 1 -->
+          <div class="flex items-center mb-4">
+            <label for="qtdClinicosTurno1" class="w-1/3 text-sm font-medium text-gray-700">
+              Clínicos - Turno 1:
+            </label>
+            <input id="qtdClinicosTurno1" type="number" formControlName="qtdClinicosTurno1"
+              class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-emerald-500" />
+          </div>
+
+          <!-- Clínicos - Turno 2 -->
+          <div class="flex items-center mb-4">
+            <label for="qtdClinicosTurno2" class="w-1/3 text-sm font-medium text-gray-700">
+              Clínicos - Turno 2:
+            </label>
+            <input id="qtdClinicosTurno2" type="number" formControlName="qtdClinicosTurno2"
+              class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-emerald-500" />
+          </div>
+
+          <!-- Clínicos - Turno 3 -->
+          <div class="flex items-center mb-4">
+            <label for="qtdClinicosTurno3" class="w-1/3 text-sm font-medium text-gray-700">
+              Clínicos - Turno 3:
+            </label>
+            <input id="qtdClinicosTurno3" type="number" formControlName="qtdClinicosTurno3"
+              class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-emerald-500" />
+          </div>
+
+          <!-- Especialistas - Turno 1 -->
+          <div class="flex items-center mb-4">
+            <label for="qtdEspecialistasTurno1" class="w-1/3 text-sm font-medium text-gray-700">
+              Especialistas - Turno 1:
+            </label>
+            <input id="qtdEspecialistasTurno1" type="number" formControlName="qtdEspecialistasTurno1"
+              class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-emerald-500" />
+          </div>
+
+          <!-- Especialistas - Turno 2 -->
+          <div class="flex items-center mb-4">
+            <label for="qtdEspecialistasTurno2" class="w-1/3 text-sm font-medium text-gray-700">
+              Especialistas - Turno 2:
+            </label>
+            <input id="qtdEspecialistasTurno2" type="number" formControlName="qtdEspecialistasTurno2"
+              class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-emerald-500" />
+          </div>
+
+          <!-- Especialistas - Turno 3 -->
+          <div class="flex items-center mb-4">
+            <label for="qtdEspecialistasTurno3" class="w-1/3 text-sm font-medium text-gray-700">
+              Especialistas - Turno 3:
+            </label>
+            <input id="qtdEspecialistasTurno3" type="number" formControlName="qtdEspecialistasTurno3"
+              class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-emerald-500" />
+          </div>
+
+          <!-- Botão de Enviar -->
+          <div class="flex justify-end mt-6">
+            <button type="submit"
+              class="px-6 py-2 bg-emerald-500 text-white font-semibold rounded-md shadow-md hover:bg-emerald-600 focus:outline-none focus:ring focus:ring-blue-300">
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="flex flex-col w-2/5 grow pr-6 pb-10 pt-4">
+      @if(data && !isLoading){
+      <div class="w-4/5 mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="px-6 py-4">
+          <h2 class="text-xl font-bold text-gray-800 mb-4">Resultados da Alocação</h2>
+
+          <div class="mb-4 flex justify-between">
+            <span class="font-semibold text-gray-700">Clínicos - 1º Turno:</span>
+            <span class="text-gray-600">{{ data.X11 }}</span>
+          </div>
+
+          <div class="mb-4 flex justify-between">
+            <span class="font-semibold text-gray-700">Clínicos - 2º Turno:</span>
+            <span class="text-gray-600">{{ data.X12 }}</span>
+          </div>
+
+          <div class="mb-4 flex justify-between">
+            <span class="font-semibold text-gray-700">Clínicos - 3º Turno:</span>
+            <span class="text-gray-600">{{ data.X13 }}</span>
+          </div>
+
+          <div class="mb-4 flex justify-between">
+            <span class="font-semibold text-gray-700">Especialistas - 1º Turno:</span>
+            <span class="text-gray-600">{{ data.X21 }}</span>
+          </div>
+
+          <div class="mb-4 flex justify-between">
+            <span class="font-semibold text-gray-700">Especialistas - 2º Turno:</span>
+            <span class="text-gray-600">{{ data.X22 }}</span>
+          </div>
+
+          <div class="mb-4 flex justify-between">
+            <span class="font-semibold text-gray-700">Especialistas - 3º Turno:</span>
+            <span class="text-gray-600">{{ data.X23 }}</span>
+          </div>
+
+          <div class="mb-4 flex justify-between border-t pt-4">
+            <span class="font-semibold text-gray-900">Custo Total (Z):</span>
+            <span class="text-green-600 font-bold">{{ data.Z | currency }}</span>
+          </div>
+        </div>
+      </div>
+      }
+
+      @if(isLoading){
+      <div class="flex flex-col items-center">
+        <div class="w-16 h-16 border-4 border-emerald-500 border-dashed rounded-full animate-spin"></div>
+        <p class="mt-4">Carregando dados...</p>
+      </div>
+      }
 
     </div>
   </div>
